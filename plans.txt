@@ -1,0 +1,27 @@
+Experiences:
+BOOKS
+MOVIES / Series
+Comedians to see
+Concerts to see
+Cities to Visit
+Games to play
+
+Skills
+Sports
+Programing Languages
+
+
+People
+
+
+
+
+USER - BUCKETS - CATEGORIES - GOALS
+
+ITEMS
+	name
+	category
+	added date
+	status
+	link (imdb/wikipedia/youtube)
+

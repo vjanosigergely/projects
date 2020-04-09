@@ -21,20 +21,21 @@ public class Goal {
   private String name;
   @ManyToOne
   @JsonIgnore
-  private Category category;
-  boolean completed;
+  private Bucket bucket;
+  private Person owner;
+  boolean completed = false;
   private String status;
   private String link;
 
-  public Goal(String name, Category category){
+  public Goal(String name, Bucket bucket, Person owner){
     this.name = name;
-    this.category=category;
+    this.bucket=bucket;
+    this.owner = owner;
   }
 
-  public Goal(String name, Category category,String link){
-    this(name,category);
+  public Goal(String name, Bucket bucket,String link,Person owner){
+    this(name,bucket,owner);
     this.link=link;
-
   }
 
 
