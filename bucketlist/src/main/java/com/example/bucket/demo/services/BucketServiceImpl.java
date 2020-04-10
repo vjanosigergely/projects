@@ -14,6 +14,11 @@ public class BucketServiceImpl implements BucketService {
   }
 
   @Override
+  public void save(Bucket bucket) {
+    bucketRepo.save(bucket);
+  }
+
+  @Override
   public Bucket findByName(String name) {
     return bucketRepo.findByName(name);
   }

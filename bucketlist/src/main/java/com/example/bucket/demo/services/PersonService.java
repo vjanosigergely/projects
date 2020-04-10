@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PersonService {
 
+  void save (Person person);
+
   Person findById(long id);
+
 
 }

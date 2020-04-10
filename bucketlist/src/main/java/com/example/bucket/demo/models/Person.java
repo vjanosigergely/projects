@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties.Bucket;
+
 
 @Entity
 @NoArgsConstructor
@@ -24,7 +24,17 @@ public class Person {
   private String username;
   private String email;
   private String password;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.EAGER)
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "bucket", fetch = FetchType.EAGER)
   private List<Bucket> buckets;
 
+  public Person(String username, String email, String password) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+  }
+
+  public void addBucket(Bucket bucketToAdd){
+    buckets.add(bucketToAdd);
+  }
 }
