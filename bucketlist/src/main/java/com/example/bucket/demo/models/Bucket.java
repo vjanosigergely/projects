@@ -23,12 +23,20 @@ public class Bucket {
   private long id;
   private String name;
   @ManyToOne
-  private Person person;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.EAGER)
+  private Category category;
+  @ManyToOne
+  private Person owner;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "bucket", fetch = FetchType.EAGER)
   private List<Goal> goals;
 
   public Bucket(String name) {
     this.name = name;
+  }
+
+  public Bucket(String name, Category category, Person owner) {
+    this.name = name;
+    this.category = category;
+    this.owner = owner;
   }
 
   public void addGoal(Goal newGoal){

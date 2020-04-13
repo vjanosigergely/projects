@@ -12,7 +12,7 @@ import lombok.Setter;
 public class GoalSettings {
 
   private String goalName;
-  private String bucketName;
+  private String categoryName;
   private String status;
   private String link;
 
