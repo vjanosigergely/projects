@@ -24,12 +24,9 @@ public class MainService {
   public void initialize() {
     Category category = new Category("Books");
     Person admin = new Person("admin","admin@admin.com","admin");
-    Bucket books = new Bucket("Books to Read",category,admin);
-    admin.addBucket(books);
-
+    Bucket books = new Bucket("Books to read",category,admin);
     categoryService.save(category);
-    bucketService.save(books);
     personService.save(admin);
-
+    bucketService.save(books);
   }
 }

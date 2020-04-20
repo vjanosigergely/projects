@@ -3,7 +3,9 @@ package com.example.bucket.demo.services;
 import com.example.bucket.demo.models.Category;
 import com.example.bucket.demo.repos.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
   private CategoryRepository catRepo;

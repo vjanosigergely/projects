@@ -1,11 +1,10 @@
 package com.example.bucket.demo.models;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -19,14 +18,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Bucket {
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String name;
   @ManyToOne
   private Category category;
   @ManyToOne
-  private Person owner;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "bucket", fetch = FetchType.EAGER)
+  private Person person;
+  @OneToMany(mappedBy = "bucket")
   private List<Goal> goals;
 
   public Bucket(String name) {
@@ -36,7 +36,7 @@ public class Bucket {
   public Bucket(String name, Category category, Person owner) {
     this.name = name;
     this.category = category;
-    this.owner = owner;
+    this.person = owner;
   }
 
   public void addGoal(Goal newGoal){

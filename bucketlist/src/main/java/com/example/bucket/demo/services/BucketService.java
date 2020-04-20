@@ -4,9 +4,8 @@ import com.example.bucket.demo.models.Bucket;
 import com.example.bucket.demo.models.Category;
 import com.example.bucket.demo.models.Person;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
-@Service
+
 public interface BucketService {
 
   void save(Bucket bucket);
@@ -16,5 +15,6 @@ public interface BucketService {
   List<Bucket> findByOwner(Person person);
 
   Bucket findById(long id);
+
 
 }

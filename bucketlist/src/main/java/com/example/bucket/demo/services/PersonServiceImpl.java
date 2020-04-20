@@ -3,7 +3,9 @@ package com.example.bucket.demo.services;
 import com.example.bucket.demo.models.Person;
 import com.example.bucket.demo.repos.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PersonServiceImpl implements PersonService {
 
   private PersonRepository personRepository;

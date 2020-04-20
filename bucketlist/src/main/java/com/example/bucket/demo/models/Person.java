@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,13 +20,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Person {
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String username;
   private String email;
   private String password;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "bucket", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "person")
   private List<Bucket> buckets;
 
   public Person(String username, String email, String password) {
@@ -35,6 +37,7 @@ public class Person {
   }
 
   public void addBucket(Bucket bucketToAdd){
-    buckets.add(bucketToAdd);
+    bucketToAdd.setPerson(this);
+    this.buckets.add(bucketToAdd);
   }
 }

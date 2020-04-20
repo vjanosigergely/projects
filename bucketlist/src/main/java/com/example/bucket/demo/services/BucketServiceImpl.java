@@ -6,7 +6,9 @@ import com.example.bucket.demo.models.Person;
 import com.example.bucket.demo.repos.BucketRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BucketServiceImpl implements BucketService {
 
   private BucketRepository bucketRepo;
@@ -23,12 +25,12 @@ public class BucketServiceImpl implements BucketService {
 
   @Override
   public Bucket findByOwnerAndCategory(Person owner, Category category) {
-    return bucketRepo.findByOwnerAndCategory(owner,category);
+    return bucketRepo.findByPersonAndCategory(owner,category);
   }
 
   @Override
   public List<Bucket> findByOwner(Person person) {
-    return bucketRepo.findByOwner(person);
+    return bucketRepo.findByPerson(person);
   }
 
   @Override
