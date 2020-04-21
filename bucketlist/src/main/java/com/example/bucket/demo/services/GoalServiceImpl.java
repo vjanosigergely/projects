@@ -8,6 +8,7 @@ import com.example.bucket.demo.models.dtos.GoalSettings;
 import com.example.bucket.demo.repos.GoalRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,17 @@ public class GoalServiceImpl implements GoalService {
     Bucket searchedBucket = bucketService.findByOwnerAndName(owner,bucketName);
     List<Goal> goalsInBucket = getAllGoals(searchedBucket);
     return goalsInBucket;
+  }
+
+  @Override
+  public void completeGoal(long goalid) throws NotFoundException {
+    Goal toComplete = goalRepo.findById(goalid).orElse(null);
+    if (toComplete != null){
+      toComplete.setCompleted(true);
+      goalRepo.save(toComplete);
+    } else {
+      throw new NotFoundException("Could not find a goal with this id");
+    }
   }
 
   private Goal createNewGoal(long personId, GoalSettings goalSettings){

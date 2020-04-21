@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,16 +35,6 @@ public class MainController {
       throw new NotFoundException("You don't have any goals yet");
     }
   }
-
-  //{userid}/goal/add - add new goal
-  @PostMapping("{id}/goal/add")
-  public ResponseEntity<?> addNewGoal(
-      @PathVariable(value = "id") long personId,
-      @RequestBody GoalSettings goalSettings){
-    goalService.saveNewGoal(personId,goalSettings);
-    return new ResponseEntity(HttpStatus.CREATED);
-  }
-
   //{userid}/{bucketid}/list - list goals in a specific bucket
   @GetMapping("{id}/{bucket}/list")
   public ResponseEntity<?> listGoalsInBucket(
@@ -52,11 +43,21 @@ public class MainController {
     List<Goal> goals = goalService.findGoalsInBucket(personId,bucketName);
     return ResponseEntity.status(HttpStatus.OK).body(goals);
   }
-
-
-
   //{userid}/goal/add - add new goal
+  @PostMapping("{id}/goal/add")
+  public ResponseEntity<?> addNewGoal(
+      @PathVariable(value = "id") long personId,
+      @RequestBody GoalSettings goalSettings){
+    goalService.saveNewGoal(personId,goalSettings);
+    return new ResponseEntity(HttpStatus.CREATED);
+  }
   //{userid}/goal/{goalid}/complete
-
+  @PutMapping("{userid}/goal/{goalid}/complete")
+  public ResponseEntity<?> completeGoal (
+      @PathVariable long userid,
+      @PathVariable long goalid) throws NotFoundException{
+    goalService.completeGoal(goalid);
+    return new ResponseEntity(HttpStatus.ACCEPTED);
+  }
 
 }

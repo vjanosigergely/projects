@@ -3,6 +3,7 @@ package com.example.bucket.demo.services;
 import com.example.bucket.demo.models.Goal;
 import com.example.bucket.demo.models.dtos.GoalSettings;
 import java.util.List;
+import javassist.NotFoundException;
 
 public interface GoalService {
 
@@ -13,4 +14,6 @@ public interface GoalService {
   void saveNewGoal(long personId, GoalSettings goalSettings);
 
   List<Goal> findGoalsInBucket(long personId, String bucketName);
+
+  void completeGoal(long goalid) throws NotFoundException;
 }
