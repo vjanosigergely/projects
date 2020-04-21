@@ -37,4 +37,9 @@ public class BucketServiceImpl implements BucketService {
   public Bucket findById(long id) {
     return null;
   }
+
+  @Override
+  public Bucket findByOwnerAndName(Person person, String bucketName) {
+    return bucketRepo.findByPersonAndName(person,bucketName);
+  }
 }

@@ -37,12 +37,21 @@ public class MainController {
 
   //{userid}/goal/add - add new goal
   @PostMapping("{id}/goal/add")
-  public ResponseEntity<?> addNewGoal(@PathVariable(value = "id") long personId, @RequestBody GoalSettings goalSettings){
+  public ResponseEntity<?> addNewGoal(
+      @PathVariable(value = "id") long personId,
+      @RequestBody GoalSettings goalSettings){
     goalService.saveNewGoal(personId,goalSettings);
     return new ResponseEntity(HttpStatus.CREATED);
   }
 
   //{userid}/{bucketid}/list - list goals in a specific bucket
+  @GetMapping("{id}/{bucket}/list")
+  public ResponseEntity<?> listGoalsInBucket(
+      @PathVariable(value = "id") long personId,
+      @PathVariable(value = "bucket") String bucketName){
+    List<Goal> goals = goalService.findGoalsInBucket(personId,bucketName);
+    return ResponseEntity.status(HttpStatus.OK).body(goals);
+  }
 
 
 

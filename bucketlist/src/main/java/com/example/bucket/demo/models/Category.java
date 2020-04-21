@@ -1,5 +1,6 @@
 package com.example.bucket.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,8 +25,10 @@ public class Category {
   private long id;
   private String name;
   @OneToMany(mappedBy = "category")
+  @JsonIgnore
   private List<Bucket> buckets;
   @OneToMany(mappedBy = "category")
+  @JsonIgnore
   private List<Goal> goals;
 
   public Category(String name) {

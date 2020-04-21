@@ -22,7 +22,6 @@ public class Goal {
   private long id;
   private String name;
   @ManyToOne
-  @JsonIgnore
   private Bucket bucket;
   @ManyToOne
   private Category category;

@@ -11,4 +11,6 @@ public interface GoalService {
   Goal findById(long id);
 
   void saveNewGoal(long personId, GoalSettings goalSettings);
+
+  List<Goal> findGoalsInBucket(long personId, String bucketName);
 }

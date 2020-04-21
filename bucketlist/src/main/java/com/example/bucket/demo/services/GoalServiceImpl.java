@@ -47,6 +47,14 @@ public class GoalServiceImpl implements GoalService {
     goalRepo.save(toSave);
   }
 
+  @Override
+  public List<Goal> findGoalsInBucket(long personId, String bucketName) {
+    Person owner = personService.findById(personId);
+    Bucket searchedBucket = bucketService.findByOwnerAndName(owner,bucketName);
+    List<Goal> goalsInBucket = getAllGoals(searchedBucket);
+    return goalsInBucket;
+  }
+
   private Goal createNewGoal(long personId, GoalSettings goalSettings){
     Person owner = personService.findById(personId);
     Category category = categoryService.findByName(goalSettings.getCategoryName());
@@ -60,10 +68,18 @@ public class GoalServiceImpl implements GoalService {
     for (int i = 0; i < buckets.size() ; i++) {
       List<Goal> goals = buckets.get(i).getGoals();
       for (int j = 0; j < goals.size() ; j++) {
-        allGoals.add(goals.get(i));
+        allGoals.add(goals.get(j));
       }
     }
     return allGoals;
+  }
+
+  private List<Goal> getAllGoals(Bucket bucket){
+    List<Goal> goals = new ArrayList<>();
+    for (Goal goal:bucket.getGoals()) {
+      goals.add(goal);
+    }
+    return goals;
   }
 
 

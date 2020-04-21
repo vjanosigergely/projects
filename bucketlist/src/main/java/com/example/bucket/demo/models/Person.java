@@ -1,5 +1,6 @@
 package com.example.bucket.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,6 +29,7 @@ public class Person {
   private String password;
 
   @OneToMany(mappedBy = "person")
+  @JsonIgnore
   private List<Bucket> buckets;
 
   public Person(String username, String email, String password) {

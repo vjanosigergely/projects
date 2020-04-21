@@ -17,4 +17,5 @@ public interface BucketService {
   Bucket findById(long id);
 
 
+  Bucket findByOwnerAndName(Person person, String bucketName);
 }

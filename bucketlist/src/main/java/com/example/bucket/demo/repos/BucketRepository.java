@@ -14,4 +14,6 @@ public interface BucketRepository extends CrudRepository<Bucket,Long> {
 
   List<Bucket> findByPerson(Person person);
 
+  Bucket findByPersonAndName(Person owner, String name);
+
 }
