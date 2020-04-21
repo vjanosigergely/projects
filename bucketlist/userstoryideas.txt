@@ -1,0 +1,12 @@
+
+
+
+########################x
+- OAUTH security
+	admin can add more categories
+- deployment on AWS
+
+#######################################################
+- private/non private goals
+- Select popular buckets from list - one click
+- Select popular goals for bucket - one click

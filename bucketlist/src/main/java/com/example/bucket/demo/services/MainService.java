@@ -23,9 +23,11 @@ public class MainService {
 
   public void initialize() {
     Category category = new Category("Books");
+    Category secondCategory = new Category("Places");
     Person admin = new Person("admin","admin@admin.com","admin");
     Bucket books = new Bucket("Books to read",category,admin);
     categoryService.save(category);
+    categoryService.save(secondCategory);
     personService.save(admin);
     bucketService.save(books);
   }
